@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PortfolioCraft - Build Your Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .template-showcase {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .template-showcase h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .templates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .template {
+            background: white;
+            color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .template:hover {
+            transform: scale(1.05);
+        }
+
+        .template-preview {
+            height: 200px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+
+        .template:nth-child(2) .template-preview {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .template:nth-child(3) .template-preview {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .template-info {
+            padding: 1rem;
+        }
+
+        .template-info h4 {
+            margin-bottom: 0.5rem;
+        }
+
+        .template-info p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .use-template {
+            width: 100%;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .use-template:hover {
+            background: #5568d3;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 3rem 2rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .features,
+            .templates {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>PortfolioCraft</h1>
+        <p>Build stunning portfolios in minutes, no coding required</p>
+    </header>
+
+    <div class="main-content">
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>Beautiful Templates</h3>
+                <p>Choose from dozens of professionally designed templates that adapt to your style and industry.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Build and deploy your portfolio in minutes with our intuitive drag-and-drop interface.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Fully Responsive</h3>
+                <p>Your portfolio looks perfect on any device - desktop, tablet, or mobile.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>One-Click Deploy</h3>
+                <p>Deploy your portfolio instantly with custom domain support and SSL certificates.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Analytics Built-in</h3>
+                <p>Track visitors, engagement, and conversions with integrated analytics dashboard.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔧</div>
+                <h3>Fully Customizable</h3>
+                <p>Every element is customizable - colors, fonts, layouts, and more.</p>
+            </div>
+        </div>
+
+        <div class="template-showcase">
+            <h2>Popular Templates</h2>
+            <div class="templates">
+                <div class="template">
+                    <div class="template-preview">💼</div>
+                    <div class="template-info">
+                        <h4>Professional</h4>
+                        <p>Clean and modern design for corporate professionals</p>
+                        <button class="use-template">Use Template</button>
+                    </div>
+                </div>
+
+                <div class="template">
+                    <div class="template-preview">🎨</div>
+                    <div class="template-info">
+                        <h4>Creative</h4>
+                        <p>Bold and artistic for designers and creatives</p>
+                        <button class="use-template">Use Template</button>
+                    </div>
+                </div>
+
+                <div class="template">
+                    <div class="template-preview">💻</div>
+                    <div class="template-info">
+                        <h4>Developer</h4>
+                        <p>Tech-focused design for software engineers</p>
+                        <button class="use-template">Use Template</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Ready to Build?</h2>
+            <p>Join thousands of professionals who trust PortfolioCraft</p>
+            <a href="#" class="btn-primary">Start Building Free</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.use-template').forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.textContent = 'Template Selected! ✓';
+                btn.style.background = '#10b981';
+                setTimeout(() => {
+                    btn.textContent = 'Use Template';
+                    btn.style.background = '';
+                }, 2000);
+            });
+        });
+    </script>
+</body>
+
+</html>
