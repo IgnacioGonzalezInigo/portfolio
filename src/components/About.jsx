@@ -9,7 +9,7 @@ function About() {
             <div className="about-container">
                 <div className="profile-wrapper">
                     <img
-                        src="/images/profile.jpg"
+                        src="/public/images/profile.jpg"
                         alt="Ignacio González Iñigo"
                         className="profile-image"
                     />
