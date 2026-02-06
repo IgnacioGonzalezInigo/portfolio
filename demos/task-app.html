@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Task Management</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #1c1e21;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 1rem;
+        }
+
+        .sidebar h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #3498db;
+        }
+
+        .sidebar nav a {
+            display: block;
+            color: #ecf0f1;
+            text-decoration: none;
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .sidebar nav a:hover,
+        .sidebar nav a.active {
+            background: #34495e;
+        }
+
+        .main-content {
+            margin-left: 250px;
+            padding: 2rem;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h2 {
+            font-size: 1.75rem;
+        }
+
+        .btn-add {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background: #2980b9;
+        }
+
+        .task-columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .task-column {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .task-column h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid #e1e8ed;
+        }
+
+        .task-column.todo h3 {
+            border-color: #95a5a6;
+        }
+
+        .task-column.in-progress h3 {
+            border-color: #f39c12;
+        }
+
+        .task-column.done h3 {
+            border-color: #27ae60;
+        }
+
+        .task-card {
+            background: #f8f9fa;
+            border-left: 4px solid #95a5a6;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 4px;
+            cursor: move;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .in-progress .task-card {
+            border-left-color: #f39c12;
+        }
+
+        .done .task-card {
+            border-left-color: #27ae60;
+        }
+
+        .task-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .task-card p {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+        }
+
+        .task-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: #6c757d;
+        }
+
+        .priority {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .priority.high {
+            background: #fee;
+            color: #c00;
+        }
+
+        .priority.medium {
+            background: #ffc;
+            color: #c60;
+        }
+
+        .priority.low {
+            background: #efe;
+            color: #060;
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                width: 200px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+            }
+
+            .task-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <h1>TaskFlow</h1>
+        <nav>
+            <a href="#" class="active">📋 My Tasks</a>
+            <a href="#">👥 Team</a>
+            <a href="#">📊 Reports</a>
+            <a href="#">⚙️ Settings</a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <h2>Project Dashboard</h2>
+            <button class="btn-add">+ New Task</button>
+        </div>
+
+        <div class="task-columns">
+            <div class="task-column todo">
+                <h3>To Do (3)</h3>
+                <div class="task-card">
+                    <h4>Design Homepage</h4>
+                    <p>Create wireframes and mockups for new homepage</p>
+                    <div class="task-meta">
+                        <span class="priority high">High</span>
+                        <span>Due: Jan 15</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>Update Documentation</h4>
+                    <p>Review and update API documentation</p>
+                    <div class="task-meta">
+                        <span class="priority low">Low</span>
+                        <span>Due: Jan 20</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>Client Meeting Prep</h4>
+                    <p>Prepare presentation for quarterly review</p>
+                    <div class="task-meta">
+                        <span class="priority medium">Medium</span>
+                        <span>Due: Jan 18</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-column in-progress">
+                <h3>In Progress (2)</h3>
+                <div class="task-card">
+                    <h4>Build Payment System</h4>
+                    <p>Integrate Stripe payment gateway</p>
+                    <div class="task-meta">
+                        <span class="priority high">High</span>
+                        <span>Due: Jan 12</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>Fix Mobile Bugs</h4>
+                    <p>Resolve responsive design issues on iOS</p>
+                    <div class="task-meta">
+                        <span class="priority medium">Medium</span>
+                        <span>Due: Jan 14</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="task-column done">
+                <h3>Done (4)</h3>
+                <div class="task-card">
+                    <h4>Database Migration</h4>
+                    <p>Migrate from MySQL to PostgreSQL</p>
+                    <div class="task-meta">
+                        <span class="priority high">High</span>
+                        <span>✓ Jan 8</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>User Testing</h4>
+                    <p>Conduct user testing sessions</p>
+                    <div class="task-meta">
+                        <span class="priority medium">Medium</span>
+                        <span>✓ Jan 6</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>Setup CI/CD</h4>
+                    <p>Configure automated deployment pipeline</p>
+                    <div class="task-meta">
+                        <span class="priority low">Low</span>
+                        <span>✓ Jan 5</span>
+                    </div>
+                </div>
+                <div class="task-card">
+                    <h4>Security Audit</h4>
+                    <p>Complete security vulnerability assessment</p>
+                    <div class="task-meta">
+                        <span class="priority high">High</span>
+                        <span>✓ Jan 3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
